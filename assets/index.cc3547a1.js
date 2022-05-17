@@ -241,7 +241,7 @@ ${Yn}
 Hi there,
 </h2>
 <p>
-this is a basic <em>basic</em> example of <strong>tiptap</strong>. Sure, there are all kind of basic text styles you\u2019d probably expect from a text editor. But wait until you see the lists:
+this is a basic <em>basic</em> example of <strong>Rich Editor</strong>. Sure, there are all kind of basic text styles you\u2019d probably expect from a text editor. But wait until you see the lists:
 </p>
 <ul>
 <li>
