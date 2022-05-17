@@ -1,8 +1,7 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Tiptap from "./Tiptap";
-import EditorMenu from "./EditorMenu";
+import Editor from "./Editor";
 import Box from "./components/Box";
 import styled, { keyframes } from "styled-components";
 import SVG from "./components/SVG";
@@ -25,7 +24,7 @@ function App() {
         backgroundColor="#fff"
         borderRadius={2}
       >
-        <Tiptap content={EXAMPLE_STR}></Tiptap>
+        <Editor content={EXAMPLE_STR}></Editor>
       </ContentBox>
       <AppFooter>
         <span>
@@ -81,7 +80,7 @@ const EXAMPLE_STR = `    <h2>
 Hi there,
 </h2>
 <p>
-this is a basic <em>basic</em> example of <strong>tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
+this is a basic <em>basic</em> example of <strong>Rich Editor</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
 </p>
 <ul>
 <li>

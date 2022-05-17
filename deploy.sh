@@ -12,8 +12,9 @@ cd dist
 # 如果你要部署到自定义域名
 # echo 'www.example.com' > CNAME
 
-git init
-git checkout -b main
+# git init
+git switch main
+# git pull git@github.com:Nico-M/editor main:gh-pages
 git add -A
 git commit -m 'deploy'
 
