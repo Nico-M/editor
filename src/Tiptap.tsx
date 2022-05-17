@@ -3,19 +3,33 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import styled from "styled-components";
 import EditorMenu from "./EditorMenu";
+import Highlight from "@tiptap/extension-highlight";
+import Paragraph from "@tiptap/extension-paragraph";
+import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item";
 
 interface TiptapProps {
   height?: number;
-  content?: string
+  content?: string;
 }
 
-const Tiptap: FunctionComponent<TiptapProps> = ({ height = 300,content="" }) => {
+const Tiptap: FunctionComponent<TiptapProps> = ({
+  height = 300,
+  content = "",
+}) => {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      Highlight,
+      Paragraph,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
+    ],
     editorProps: {
       attributes: {
-        class:
-          "prose prose-sm xl:prose-lg m-5 focus:outline-none",
+        class: "prose prose-sm xl:prose-lg m-5 focus:outline-none",
       },
     },
     content: content,
@@ -41,6 +55,28 @@ const StyledEditorContent = styled(EditorContent)`
   overflow-y: auto;
   .ProseMirror {
     height: ${(props: any) => props.height}px;
+    ul[data-type="taskList"] {
+      list-style: none;
+      padding: 0;
+
+      p {
+        margin: 0;
+      }
+
+      li {
+        display: flex;
+
+        > label {
+          flex: 0 0 auto;
+          margin-right: 0.5rem;
+          user-select: none;
+        }
+
+        > div {
+          flex: 1 1 auto;
+        }
+      }
+    }
   }
 `;
 

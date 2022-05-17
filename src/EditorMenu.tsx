@@ -21,17 +21,32 @@ const EditorMenu: FunctionComponent<EditorMenuProps> = ({ editor }) => {
       case "strike":
         commandFn = focus.toggleStrike();
         break;
+      case "highlight":
+        commandFn = focus.toggleHighlight();
+        break;
       case "code":
         commandFn = focus.toggleCode();
         break;
       case "h-1":
         commandFn = focus.toggleHeading({ level: 1 });
         break;
-      case "h-3":
-        commandFn = focus.toggleHeading({ level: 3 });
+      case "h-2":
+        commandFn = focus.toggleHeading({ level: 2 });
         break;
-      case "h-6":
-        commandFn = focus.toggleHeading({ level: 6 });
+      case "h-3":
+        commandFn = focus.toggleHeading({ level: 4 });
+        break;
+      case "paragraph":
+        commandFn = focus.setParagraph();
+        break;
+      case "unorder":
+        commandFn = focus.toggleBulletList();
+        break;
+      case "order":
+        commandFn = focus.toggleOrderedList();
+        break;
+      case "task":
+        commandFn = focus.toggleTaskList();
         break;
       default:
         break;
@@ -56,19 +71,68 @@ const EditorMenu: FunctionComponent<EditorMenuProps> = ({ editor }) => {
       <MenuButton
         icon="ri-strikethrough"
         onClick={() => excuteCommand("strike")}
-        className={editor.isActive("strikethrough") ? "is-active" : ""}
+        active={editor.isActive("strike")}
+        title="Strike"
       />
-      <MenuButton icon="ri-mark-pen-line" />
+      <MenuButton
+        icon="ri-mark-pen-line"
+        onClick={() => excuteCommand("highlight")}
+        active={editor.isActive("highlight")}
+        title="Highlight"
+      />
+
       <MenuDivder />
-      <MenuButton icon="ri-h-1" />
-      <MenuButton icon="ri-h-2" />
-      <MenuButton icon="ri-paragraph" />
-      <MenuButton icon="ri-list-unordered" />
+      <MenuButton
+        icon="ri-h-1"
+        onClick={() => excuteCommand("h-1")}
+        active={editor.isActive("heading", {
+          level: 1,
+        })}
+        title="Heading 1"
+      />
+      <MenuButton
+        icon="ri-h-2"
+        onClick={() => excuteCommand("h-2")}
+        active={editor.isActive("heading", {
+          level: 2,
+        })}
+        title="Heading 2"
+      />
+      <MenuButton
+        icon="ri-h-3"
+        onClick={() => excuteCommand("h-3")}
+        active={editor.isActive("heading", {
+          level: 4,
+        })}
+        title="Heading 3"
+      />
+      <MenuButton
+        icon="ri-paragraph"
+        onClick={() => excuteCommand("paragraph")}
+        active={editor.isActive("paragraph")}
+        title="Paragraph"
+      />
       <MenuDivder />
-      <MenuButton icon="ri-list-ordered" />
-      <MenuButton icon="ri-list-check-2" />
+      <MenuButton
+        icon="ri-list-unordered"
+        onClick={() => excuteCommand("unorder")}
+        active={editor.isActive("bulletList")}
+        title="Unorder List"
+      />
+      <MenuButton
+        icon="ri-list-ordered"
+        onClick={() => excuteCommand("order")}
+        active={editor.isActive("orderedList")}
+        title="Order List"
+      />
+      <MenuButton
+        icon="ri-list-check-2"
+        onClick={() => excuteCommand("task")}
+        active={editor.isActive("taskList")}
+        title="Task List"
+      />
       <MenuDivder />
-      <MenuButton icon="ri-code-box-line" />
+      {/* <MenuButton icon="ri-code-box-line" />
       <MenuButton icon="ri-double-quotes-l" />
       <MenuButton icon="ri-separator" />
       <MenuDivder />
@@ -76,7 +140,7 @@ const EditorMenu: FunctionComponent<EditorMenuProps> = ({ editor }) => {
       <MenuButton icon="ri-format-clear" />
       <MenuDivder />
       <MenuButton icon="ri-arrow-go-back-line" />
-      <MenuButton icon="ri-arrow-go-forward-line" />
+      <MenuButton icon="ri-arrow-go-forward-line" /> */}
     </EditorHeader>
   );
 };
